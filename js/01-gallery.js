@@ -24,12 +24,16 @@ function createGallery(items) {
 gallery.addEventListener('click', onItemGalleryClick);
 function onItemGalleryClick(evt) {
     evt.preventDefault();
-    const instance = basicLightbox.create(`<img src=${evt.target.dataset.source}>`
-    )
-    instance.show()
+    if (!evt.target.classList.contains("gallery__image")) {
+        return
+    }
+        const instance = basicLightbox.create(`<img src=${evt.target.dataset.source}>`
+        )
+        instance.show()
 
-    window.addEventListener('keydown', closeModal)
-    function closeModal(evt)
-    {
- if (evt.code === 'Escape') {instance.close()}}
-}
+        window.addEventListener('keydown', closeModal)
+        function closeModal(evt) {
+            if (evt.code === 'Escape') { instance.close() }
+        }
+    }
+
